@@ -77,6 +77,16 @@ htpasswd
 ## Docker
 TODO:
 Doe bovenstaande na en verwijder logstash, is na het inlezen niet meer noodzakelijk.
+De dataset uit tmp mag/is weg.
+
+De dataset is vrij fors voor een docker image:
+```
+du -sh /var/lib/elasticsearch
+1.1G	/var/lib/elasticsearch
+```
+Een mogelijk oplossing hiervoor:
+https://www.elastic.co/blog/data-rollups-in-elasticsearch-you-know-for-saving-space
+
 Dockerfile plaatsen in deze repo.
 
 
