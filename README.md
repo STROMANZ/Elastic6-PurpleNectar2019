@@ -23,13 +23,13 @@ Dit komt omdat er aanzienlijk minder green cabs zijn t.o.v. yellow cabs.
 bron: https://en.wikipedia.org/wiki/Boro_taxi -->
 "Boro taxis (or boro cab) are taxicabs in New York City that are allowed to pick up passengers (street hails or calls) in outer boroughs (excluding John F. Kennedy International Airport and LaGuardia Airport unless arranged in advance) and in Manhattan above East 96th and West 110th Streets. **The color of boro taxis is apple green (bright green)** in contrast to the traditional yellow taxis in New York City." 
 
-Bij het plotten van de pickup(geoip) in Kibana is duidelijk terug te zien dat er op Manhattan zeer weinig pickups zijn onder bovengenoemde straten. Aan de deelnemers van de workshop kan dan ook gevraagd worden wat ze opvalt aan de visualisatie op de kaart.
+Bij het plotten van de pickup(geoip) in Kibana is duidelijk terug te zien dat er op Manhattan zeer weinig pickups zijn onder de bovengenoemde straten. Aan de deelnemers van de workshop kan dan ook gevraagd worden wat ze opvalt aan de visualisatie op de kaart. Tips boven de $100, levert ook leuke resultaten op.
 
 ## Elastic.co
 De installatie van de componenten elasticsearch, logstash, zijn getest op een Ubuntu 16.04 systeem waar Java al aanwezig was.
 De verwachting is dat het ook werkt op de 18.04 systeem.
 
-### Install pre requirements
+### Install pre-requirements
 ```
 sudo apt install openjdk-8-jre-headless
 sudo apt install haveged
@@ -58,7 +58,7 @@ sudo aptitude install kibana
 sudo systemctl enable kibana
 sudo systemctl start kibana
 ```
-Verify: port http://localhost:5601 is available and show Kibana UI
+Verify: port http://localhost:5601 is available and shows the Kibana UI
 
 
 ### Install logstash, place configuration and fill elasticsearch
