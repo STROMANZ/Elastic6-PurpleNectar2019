@@ -31,38 +31,50 @@ De verwachting is dat het ook werkt op de 18.04 systeem.
 ### Install pre requirements
 ```
 sudo apt install openjdk-8-jre-headless
-
 sudo apt install haveged
+sudo apt install curl
 ```
 
 ### Add and prepare the elastic.co repository
-
+```
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-
 echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
-
 sudo apt update
+```
 
+### Install, enable and start elasticsearch
+```
 sudo apt install elasticsearch
-
 sudo systemctl enable elasticsearch.service
-
 systemctl start elasticsearch.service
+```
+Verify: curl -XGET localhost:9200
 
+
+### Install, enable and start kibana
+```
 sudo aptitude install kibana
-
 sudo systemctl enable kibana
-
 sudo systemctl start kibana
+```
+Verify: port http://localhost:5601 is available and show Kibana UI
 
+
+### Install logstash, place configuration and fill elasticsearch
+```
 sudo aptitude install logstash
-
-
+cp 01-taxi.conf /etc/logstash/conf.d/
+cp taxi-template.json /etc/logstash/conf.d/
+cp green_tripdata_2019-04.csv /tmp
 /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/01-taxi.conf
+```
 
-
+### Apache/Nginx Proxy met basis auth
+Bestaande proxy gebruiken (?)
+htpasswd
 
 ## Docker
-
+TODO:
+Doe bovenstaande na, verwijder logstash, is na het inlezen niet meer noodzakelijk.
 
 
