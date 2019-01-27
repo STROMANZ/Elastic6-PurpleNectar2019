@@ -65,7 +65,7 @@ Verify: port http://localhost:5601 is available and shows the Kibana UI
 ```
 sudo aptitude install logstash
 cp 01-taxi.conf /etc/logstash/conf.d/
-cp taxi-template.json /etc/logstash/conf.d/
+cp taxi-template.json /tmp
 cp green_tripdata_2019-04.csv /tmp
 /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/01-taxi.conf
 ```
