@@ -47,7 +47,8 @@ git clone https://github.com/STROMANZ/Elastic6-PurpleNectar2019.git
 cd Elastic6-PurpleNectar2019
 ```
 
-3. **Gebruik `docker-compose` om de stack te starten:**
+3. **Gebruik `startMulti.sh` om x stack(s) te starten:**
 ```
-docker-compose up -d
+./startMulti.sh 3
 ```
+*Met bovenstaande worden 3 stacks gestart, dus 3x Elasticsearch met 3x Kibana en een 1 op 1 relatie*
