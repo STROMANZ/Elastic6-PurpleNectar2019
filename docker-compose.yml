@@ -6,9 +6,6 @@ services:
     image: stefanvangastel/es_pn2019:latest
     volumes:
       - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-    ports:
-      - "9200:9200"
-      - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
@@ -19,7 +16,7 @@ services:
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
     ports:
-      - "5601:5601"
+      - "${INSTANCE}:5601"
     networks:
       - elk
     depends_on:

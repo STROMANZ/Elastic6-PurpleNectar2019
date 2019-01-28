@@ -34,19 +34,20 @@ Om de omgeving te starten is het volgende benodigd (uitgaande van een Ubuntu 18.
 curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 
-### Data downloaden
-1. Clone van deze repository:
+### Omgeving starten
+De omgeving bevat een custom Elasticsearch waar de data al is ingeladen!
+
+1. **Clone deze repository:**
 ```
 git clone https://github.com/STROMANZ/Elastic6-PurpleNectar2019.git
 ```
-2.  `cd` in de ge-clone-de directory en download de data:
+
+2. **Ga in de geclonede directory staan:**
 ```
 cd Elastic6-PurpleNectar2019
-./scripts/downloadData.sh
 ```
 
-### Omgeving starten
-Gebruik `docker-compose` om de stack te starten:
+3. **Gebruik `docker-compose` om de stack te starten:**
 ```
 docker-compose up -d
 ```
