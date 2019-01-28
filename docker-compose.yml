@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+    volumes:
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.5.4
+    volumes:
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+
+      - ./logstash/01-taxi.conf:/etc/logstash/conf.d/01-taxi.conf:ro
+      - ./logstash/taxi-template.json:/tmp/taxi-template.json:ro
+
+      - ./data/green_tripdata_2019-04.csv:/tmp/green_tripdata_2019-04.csv
+    ports:
+      - "5000:5000"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.5.4
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    ports:
+      - "5601:5601"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+networks:
+
+  elk:
+    driver: bridge
