@@ -47,8 +47,14 @@ git clone https://github.com/STROMANZ/Elastic6-PurpleNectar2019.git
 cd Elastic6-PurpleNectar2019
 ```
 
-3. **Gebruik `startMulti.sh` om x stack(s) te starten:**
+3. **Gebruik `start.sh` om x stack(s) te starten:**
 ```
-./startMulti.sh 3
+./start.sh 3
 ```
-*Met bovenstaande worden 3 stacks gestart, dus 3x Elasticsearch met 3x Kibana en een 1 op 1 relatie*
+*Met bovenstaande worden 3 stacks gestart, dus 3x Elasticsearch met 3x Kibana en een 1 op 1 relatie met ieder een aparte Kibana poort*
+
+4. **Gebruik `stop.sh` om alle stack(s) te stoppen:**
+```
+./stop.sh
+```
+*Alle containers die gestart zijn (en de naam `es_stack_*` hebben worden gestopt*

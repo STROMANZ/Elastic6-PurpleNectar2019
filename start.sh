@@ -1,5 +1,14 @@
 #!/bin/sh
-COUNT=`expr 30000 + $1`
+
+if [ -z "$1" ]
+then
+  export NUMINSTANCES=1
+else
+  export NUMINSTANCES=$1
+fi
+
+
+COUNT=`expr 30000 + $NUMINSTANCES`
 
 for i in $(eval echo {30001..$COUNT})
 do
