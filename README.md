@@ -25,68 +25,36 @@ bron: https://en.wikipedia.org/wiki/Boro_taxi -->
 
 Bij het plotten van de pickup(geoip) in Kibana is duidelijk terug te zien dat er op Manhattan zeer weinig pickups zijn onder de bovengenoemde straten. Aan de deelnemers van de workshop kan dan ook gevraagd worden wat ze opvalt aan de visualisatie op de kaart. Tips boven de $100, levert ook leuke resultaten op.
 
-## Elastic.co
-De installatie van de componenten elasticsearch, logstash, zijn getest op een Ubuntu 16.04 systeem waar Java al aanwezig was.
-De verwachting is dat het ook werkt op de 18.04 systeem.
+### Pre-requirements
+Om de omgeving te starten is het volgende benodigd (uitgaande van een Ubuntu 18.04 omgeving als user `root`):
 
-### Install pre-requirements
+1. Zorg dat [`docker`](https://docs.docker.com/install/linux/docker-ce/ubuntu/) is geinstalleerd
+1. Zorg dat [`docker-compose`](https://docs.docker.com/compose/install/) is geinstalleerd:
 ```
-sudo apt install openjdk-8-jre-headless
-sudo apt install haveged
-sudo apt install curl
+curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 
-### Prepare the elastic.co repository
-```
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
-sudo apt update
-```
+### Omgeving starten
+De omgeving bevat een custom Elasticsearch waar de data al is ingeladen!
 
-### Install, enable and start elasticsearch
+1. **Clone deze repository:**
 ```
-sudo apt install elasticsearch
-sudo systemctl enable elasticsearch.service
-systemctl start elasticsearch.service
-```
-Verify: curl -XGET localhost:9200
-
-
-### Install, enable and start kibana
-```
-sudo aptitude install kibana
-sudo systemctl enable kibana
-sudo systemctl start kibana
-```
-Verify: port http://localhost:5601 is available and shows the Kibana UI
-
-
-### Install logstash, place configuration and fill elasticsearch
-```
-sudo aptitude install logstash
-cp 01-taxi.conf /etc/logstash/conf.d/
-cp taxi-template.json /tmp
-cp green_tripdata_2019-04.csv /tmp
-/usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/01-taxi.conf
+git clone https://github.com/STROMANZ/Elastic6-PurpleNectar2019.git
 ```
 
-### Apache/Nginx Proxy met basis auth
-Bestaande proxy gebruiken (?)
-htpasswd
-
-## Docker
-TODO:
-Doe bovenstaande na en verwijder logstash, is na het inlezen niet meer noodzakelijk.
-De dataset uit tmp mag/is weg.
-
-De dataset is vrij fors voor een docker image:
+2. **Ga in de geclonede directory staan:**
 ```
-du -sh /var/lib/elasticsearch
-1.1G	/var/lib/elasticsearch
+cd Elastic6-PurpleNectar2019
 ```
-Een mogelijk oplossing hiervoor:
-https://www.elastic.co/blog/data-rollups-in-elasticsearch-you-know-for-saving-space
 
-Dockerfile plaatsen in deze repo.
+3. **Gebruik `start.sh` om x stack(s) te starten:**
+```
+./start.sh 3
+```
+*Met bovenstaande worden 3 stacks gestart, dus 3x Elasticsearch met 3x Kibana en een 1 op 1 relatie met ieder een aparte Kibana poort*
 
-
+4. **Gebruik `stop.sh` om alle stack(s) te stoppen:**
+```
+./stop.sh
+```
+*Alle containers die gestart zijn (en de naam `es_stack_*` hebben worden gestopt*
