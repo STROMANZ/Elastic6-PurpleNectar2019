@@ -2,9 +2,8 @@
 
 ## Algemeen
 Deze repo bevat een installatiehandleiding voor het installeren van een elasticsearch-omgeving t.b.v. een workshop Kibana op Purple Nectar 2019. De elasticsearch-omgeving wordt gevuld met een ritinformatie van taxi's in NYC.
-Er is gekozen voor taxi-ritten omdat deze informatie goed begrijpelijk is voor een ieder met een IQ boven de 85.
+Er is gekozen voor taxi-ritten omdat deze informatie goed begrijpelijk is voor een ieder.
 
-Het idee is om uiteindelijk de data ingeladen en wel via Kibana te ontsluiten vanuit een docker contrainer.
 Bij aanvang van de workshop kunnen de containers gestart worden zodat de uitgangspositie altijd gelijk is.
 
 De oorspronkelijke dataset komt uit April 2015.
