@@ -3,7 +3,7 @@ version: '2.2'
 services:
 
   elasticsearch:
-    image: stefanvangastel/es_pn2019:latest
+    image: tommy1987/es_pn2019:v1.0.1
     cpus: "1"
     volumes:
       - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
